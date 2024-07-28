@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizlet Card Maker</title>
+</head>
+<body>
+    <div>
+        <h1>Quizlet Card Maker</h1>
+        <form method="post" action="{{ url_for('Audio') }}">
+            <label for="filename">Question:</label>
+            <input type="text" id="filename" name="filename" required><br>
+            <textarea name="textbox" rows="10" cols="50"></textarea><br>
+            <button type="submit">Save</button>
+        </form>
+        <a href="{{ url_for('Audio') }}">View Saved Question</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Question</title>
+</head>
+<body>
+    <div>
+        <h2>Question</h2>
+        <ul>
+            {% for file in files %}
+            <li>
+                <h3>
+                    {{ file.name }}
+                    {% if file.audio_name_exists %}
+                    <button onclick="document.getElementById('audio_name_{{ file.name }}').play()">Play Name Audio</button>
+                    <audio id="audio_name_{{ file.name }}">
+                        <source src="{{ url_for('get_audio', filename=get_audio_filename('name_' + file.name)) }}" type="audio/mpeg">
+                    </audio>
+                    {% endif %}
+                </h3>
+                <pre>{{ file.content }}</pre>
+                {% if file.audio_exists %}
+                <div>
+                    <button onclick="document.getElementById('audio_{{ file.name }}').play()">Play Content Audio</button>
+                    <audio id="audio_{{ file.name }}">
+                        <source src="{{ url_for('get_audio', filename=get_audio_filename(file.name)) }}" type="audio/mpeg">
+                    </audio>
+                </div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>
